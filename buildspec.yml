@@ -1,20 +1,83 @@
 version: 0.2
 
-
+#env:
 phases:
+  install:
+    runtime-versions:
+      java: corretto8
+    commands:
+      - echo intall
+  pre_build:
+    commands:
+      - echo pre_build
   build:
     commands:
-      - echo Entered the build phase...
-      - echo Build started on `date`
-      - mvn clean package
+      - mvn install
+      - echo build
   post_build:
     commands:
-      - echo Build completed successfully
-artifacts:
-  files:
-    - target/STSEasyWash*/*
-  discard-paths: yes
+      - echo post_build
 
-cache:
-  paths:
-    - '/root/.m2/**/*'
+artifacts:     
+  files:
+    - target/spring-boot-rest-api-h2-aws-continious-deloy-0.0.1-SNAPSHOT.jar
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #secrets-manager:
+     # key: secret-id:json-key:version-stage:version-id
+     # key: secret-id:json-key:version-stage:version-id
+  #exported-variables:
+     # - variable
+     # - variable
+  #git-credential-helper: yes
+#batch:
+  #fast-fail: true
+  #build-list:
+  #build-matrix:
+  #build-graph:
+#phases:
+# install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    #runtime-versions:
+      # name: version
+      # name: version
+    #commands:
+      # - command
+      # - command
+     
+
+  #pre_build:
+    #commands:
+      # - command
+      # - command
+  #build:
+  #  commands:clean install
+      # - command
+      # - command
+  #post_build:
+    #commands:
+      # - command
+      # - command
+#reports:
+  #report-name-or-arn:
+    #files:
+      # - location
+      # - location
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths
