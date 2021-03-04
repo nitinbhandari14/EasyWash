@@ -1,0 +1,381 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<head>
+<style>
+.logo {
+  float: left;
+  clear: left;
+  margin-left: 20px;
+}
+#memo .company-name-right-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  background: url("../images/right-arrow.png") right center no-repeat; 
+  background-size: auto 60px;
+}
+#memo .company-name {
+ 
+  background-size: 100px auto;
+  padding: 10px 20px;
+  position: relative;
+  margin-bottom: 15px;
+}
+#memo .company-name-span {
+  color: white;
+  display: inline-block;
+  min-width: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1em;
+}
+#memo .company-info {
+  margin-left: 20px;
+  float: left;
+  font-size: 12px;
+  color: #8b8b8b;
+}
+#memo .company-info-div {
+  margin-bottom: 3px;
+  min-width: 20px;
+}
+#memo .company-info-span {
+  display: inline-block;
+  min-width: 20px;
+}
+#invoice-info {
+  float: left;
+  margin: 25px 0 0 20px;
+}
+#invoice-info .div-section  {
+  float: left;
+}
+#invoice-info .div-span-section {
+  display: block;
+  min-width: 20px;
+  min-height: 18px;
+  margin-bottom: 3px;
+}
+#invoice-info .div-last {
+  margin-left: 20px;
+}
+#invoice-info .after{
+  content: '';
+  display: block;
+  clear: both;
+}
+#client-info {
+  float: right;
+  margin: 5px 20px 0 0;
+  min-width: 220px;
+  text-align: right;
+}
+#client-info  .div {
+  margin-bottom: 3px;
+  min-width: 20px;
+}
+#client-info .span {
+  display: block;
+  min-width: 20px;
+}
+#items {
+  margin: 20px 0 35px 0;
+}
+#items .first-cell, #items table th:first-child, #items table td:first-child {
+  width: 18px;
+  text-align: right;
+}
+#items .table {
+  border-collapse: separate;
+  width: 100%;
+}
+#items .table-th {
+  padding: 12px 10px;
+  text-align: right;
+  background: #E6E7E7;
+  border-bottom: 4px solid #487774;
+}
+#items .table-th-nth-child-2 {
+  width: 30%;
+  text-align: left;
+}
+#items .table-th-last-child {
+  text-align: right;
+  padding-right: 20px !important;
+}
+#items .table-td {
+  padding: 15px 10px;
+  text-align: right;
+  border-right: 1px solid #CCCCCF;
+}
+#items .table-td-first-child {
+  text-align: left;
+  border-right: 0 !important;
+}
+#items .table-td-nth-child-2 {
+  text-align: left;
+}
+#items .table-td-last-child {
+  border-right: 0 !important;
+  padding-right: 20px !important;
+}
+#invoice-title-number .basic {
+  text-align: center;
+  margin: 20px 0;
+}
+#invoice-title-number .span {
+  display: inline-block;
+  min-width: 20px;
+ 
+}
+#invoice-title-number .title {
+  margin-right: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+ 
+}
+#invoice-title-number .number {
+  font-size: 15px;
+  text-align: left;
+ 
+}
+#sums {
+  float: right;
+  background: #8BA09E url("../images/left-arrow.png") -17px bottom no-repeat;
+  background-size: auto 100px;
+  color: white;
+}
+
+#sums .common3 {
+  min-width: 100px;
+  padding: 8px 20px 8px 35px;
+  text-align: right;
+  font-weight: 600;
+}
+#sums .table-tr-th {
+  text-align: left;
+  padding-right: 25px;
+}
+#sums .table-tr-amount-total-th {
+  text-transform: uppercase;
+}
+
+#sums .common1 {
+  font-size: 16px;
+  font-weight: bold;
+}
+#sums .table-tr-last-child-th {
+  text-transform: uppercase;
+}
+
+#sums .common2 {
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 20px !important;
+  padding-bottom: 40px !important;
+}
+#terms {
+  margin: 50px 20px 10px 20px;
+}
+#terms .span {
+  display: inline-block;
+  min-width: 20px;
+  font-weight: bold;
+}
+#terms .div {
+  margin-top: 10px;
+  min-height: 50px;
+  min-width: 50px;
+}
+
+.payment-info {
+  margin: 0 20px;
+}
+.payment-info-div {
+  font-size: 12px;
+  color: #8b8b8b;
+  display: inline-block;
+  min-width: 20px;
+}
+
+.currency {
+  border-bottom: 4px solid #487774;
+  padding: 0 20px;
+}
+.currency-span {
+  font-size: 11px;
+  font-style: italic;
+  color: #8b8b8b;
+  display: inline-block;
+  min-width: 20px;
+}
+
+</style>
+</head>
+</head>
+  <body>
+           <div id="container">
+      <section id="memo">
+        <div class="company-name">
+          <span class="company-name-span" th:text=" ${company_name}"></span>
+          <div class="company-name-right-arrow"></div>
+        </div>
+
+        <div class="logo">
+          <img data-logo="{company_logo}" />
+        </div>
+        
+        <div class="company-info">
+          <div class="company-info-div">
+            <span class="company-info-span" th:text=" ${company_address}"></span>
+          </div>
+          <div class="company-info-div" th:text=" ${company_email_web}"></div>
+          <div class="company-info-div" th:text=" ${company_phone_fax}"></div>
+        </div>
+
+      </section>
+      
+      <section id="invoice-info" >
+        <div class="div-section after">
+           <span class="div-span-section after">Invoice Date:</span>
+             <span class="div-span-section after">Invoice#:</span>
+           
+          <span class="div-span-section after">Current Load:</span>
+        
+        
+        </div>
+        
+        <div class="div-section div-last"> 
+         <span th:text=" ${issue_date_label}" class="div-span-section after"></span>
+            <span th:text=" ${invoice_number}" class="div-span-section after"></span>
+          <span th:text=" ${CurrentLoad}" class="div-span-section after"></span>
+         <!--  <span th:text=" ${net_term_label}"></span>
+          <span th:text=" ${po_number_label}"></span> -->
+        </div>
+      </section>
+      
+      <section id="client-info">
+        <span>Billing Address:</span>
+        <div class="div">
+         <span class="bold span" th:text="|${client_ID}${client_name}|"></span>
+        </div>
+        
+        <div class="div">
+          <span class="span" th:text=" ${client_address}"></span>
+        </div>
+        
+        <div class="div">
+          <span class="span"  th:text=" ${client_city_zip_state}"></span>
+        </div>
+        
+        <div class="div">
+          <span class="span" th:text=" ${client_phone_fax}"></span>
+        </div>
+        
+        <div class="div">
+          <span class="span"  th:text=" ${client_email}"></span>
+        </div>
+        
+     <!--    <div class="div">
+          <span class="span"  th:text=" ${client_ID}"></span>
+        </div> -->
+      </section>
+      
+      <div class="clearfix"></div>
+      
+   <!--    <section  id="invoice-title-number">
+      
+        <span class="span title basic" >Invoice#</span>
+        <span class="span number basic" th:text=" ${invoice_number}"></span>
+        
+      </section> -->
+      
+      <div class="clearfix"></div>
+      
+      <section id="items">
+        
+        <table class="table" cellpadding="0" cellspacing="0">
+        
+          <tr>
+           
+            <th class="table-th">Item</th>
+            <th class="table-th">Quantity</th>
+            <th class="table-th">Price</th>
+            <th class="table-th">Total</th>
+          </tr>
+            <tr>
+         
+            <td class="table-td" th:text="${item_description}"></td>
+            <td class="table-td" th:text="${item_quantity}"></td>
+            <td class="table-td" th:text="${item_price}"></td>
+            <td class="table-td"  th:text="${item_line_total}" ></td>
+          </tr>
+     <!--    data-iterate="item" ${item.item_line_total}  -->
+          <tr th:each="item : ${items}">
+         
+            <td class="table-td" th:text="${item.item_description}"></td>
+            <td class="table-td" th:text="${item.item_quantity}+'Kg'"></td>
+            <td class="table-td" th:text="${item.item_price}"></td>
+            <td class="table-td"  th:text="${item.item_line_total}" ></td>
+          </tr>
+          
+        </table>
+        
+      </section>
+ <div class="currency">
+        <span class="currency-span">Quantity:</span> <span class="currency-span">Kg</span>
+      </div>
+     
+      
+      <section id="sums">
+      
+        <table cellpadding="0" cellspacing="0">
+          <tr>
+            <th class="table-tr-th common3">SubTotal</th>
+            <td class="common3"  th:text=" ${sub_total}"></td>
+          </tr>
+          
+    
+          <tr class="amount-total">
+            <th class="table-tr-amount-total-th common3">PAYABLE TOTAL</th>
+            <td class="common3 common1"  th:text=" ${amount_total}"></td>
+          </tr>
+          
+       
+          
+         <!--  <tr data-hide-on-quote="true">
+            <th class="table-tr-th common3 common2 table-tr-last-child-th">AMOUNT DUE</th>
+            <td class="common3 common2">{amount_due}</td>
+          </tr> -->
+          
+        </table>
+        
+      </section>
+      
+      <div class="clearfix"></div>
+      
+      <section  id="terms">
+      
+        <span class="span">Terms&amp;Condition</span>
+        <div class="div">Load will be preferred in the multiple of base load however, load below/above base load is accepted at per kg rate bases</div>
+        
+      </section>
+
+      <div class="payment-info">
+        <div class="payment-info-div">PaytmUPI ID</div>
+       
+        
+      </div>
+    </div>
+   <!--  <h3 style="text-align: center; color: green">
+      <span th:text="'Welcome to ' + ${Name} + '!'"></span>
+       <span th:text="'Welcome to ' + ${company_name} + '!'"></span>
+        <span th:text="'Welcome to ' + ${company_address} + '!'"></span>
+    </h3> -->
+    <script src="http://cdn.invoicebus.com/generator/generator.min.js?data=data.js"></script>
+  </body>
+</html>

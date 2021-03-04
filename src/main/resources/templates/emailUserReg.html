@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all">User Registration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+   <p th:text="${'Hello Dear ' + name}"></p>
+
+   <p>
+      Greeting! Welcome to EasyWash
+    </p>
+    <p>
+      You have been successfully registered with Mobile <span th:text="${sign}"> </span> on <span th:text="${location}"> </span> and your Package is <span th:text="${Amount}"> 
+      </span>
+      <!-- <b>	<select 	 th:field="*{Amount}">
+      	<option th:value="'S'" th:text="Student"></option>
+		<option th:value="'F'" th:text="Family"></option>
+		<option th:value="'G'" th:text="General"></option></select></b> -->
+      
+     
+    </p>
+  
+    <p>
+      Keep your EasyWash ID <b><span th:text="${orderNo}"> </span></b> for future references.
+    </p>
+   
+    <p>
+      Regards, <br />
+      <em>EasyWash Team</em>
+         <em> <a href="http://easywashdoon.com">
+        <img src="https://qualdata.co.in/forms/logo.png" alt="http://easywashdoon.com" height="100" width="100"/>
+      </a></em>
+    </p>
+  </body>
+</html>

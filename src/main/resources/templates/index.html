@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Easy Wash</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="Easy Wash Laundry Service Dehradun provide various services like Steam Wash ,Dry Clean and Wash ,It also provide 
+	pick and Drop Services in Clement Town region.">
+<meta name="keywords"
+	content="Easy Wash Laundry Service,Dehradun Laundry Service,Laundry near Clement Town,Laundry near ISBT,Pick and Drop facility,Steam Iron ,Dry Clean in dehradun">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap"
+	rel="stylesheet">
+<link th:href="@{/css/open-iconic-bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/css/animate.css}" rel="stylesheet" />
+<link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
+<link th:href="@{/css/owl.theme.default.min.css}" rel="stylesheet" />
+<link th:href="@{/css/magnific-popup.css}" rel="stylesheet" />
+<link th:href="@{css/aos.css}" rel="stylesheet" />
+<link th:href="@{/css/ionicons.min.css}" rel="stylesheet" />
+<link th:href="@{/css/flaticon.css}" rel="stylesheet" />
+<link th:href="@{/css/icomoon.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<!--    <title>Users</title> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+   -->
+<!--  <script src="https://www.google.com/recaptcha/api.js"></script> -->
+<script
+	src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit"
+	 defer></script>
+</head>
+<body  onload="loadImage()" data-spy="scroll"
+	data-target=".site-navbar-target" data-offset="300">
+	<nav
+		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target"
+		id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="#home-section"><span
+				class="navbar-brand"><IMG SRC="images/logo.png" ALT="logo"
+					WIDTH=120 HEIGHT=90> </span><!-- </span>Easy Wash<br class>   --></a>
+			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle"
+				type="button" data-toggle="collapse" data-target="#ftco-nav"
+				aria-controls="ftco-nav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span>Menu
+			</button>
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav nav mr-auto">
+					<li class="nav-item"><a href="#home-section" class="nav-link"
+						data-toggle="collapse" data-target=".navbar-collapse.show"><span>Home</span></a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link"
+						data-toggle="collapse" data-target=".navbar-collapse.show"><span>About
+								Us</span></a></li>
+					<li class="nav-item"><a href="#sermons-section"
+						class="nav-link" data-toggle="collapse"
+						data-target=".navbar-collapse.show"><span>Services</span></a></li>
+					<li class="nav-item"><a href="#events-section"
+						class="nav-link" data-toggle="collapse"
+						data-target=".navbar-collapse.show"><span>Packages</span></a></li>
+					<li class="nav-item"><a href="#order-status" class="nav-link"
+						data-toggle="collapse" data-target=".navbar-collapse.show"><span>Order
+								Status</span></a></li>
+					<li class="nav-item"><a href="#contact-section"
+						class="nav-link" data-toggle="collapse"
+						data-target=".navbar-collapse.show"><span>Register
+								Pick-Up</span></a></li>
+					<li class="nav-item"><a href="#locate-section"
+						class="nav-link" data-toggle="collapse"
+						data-target=".navbar-collapse.show"><span>Locate Us</span></a></li>
+					<li class="nav-item"><a href="#terms-condition"
+						class="nav-link" data-toggle="collapse"
+						data-target=".navbar-collapse.show"><span>Terms &amp;
+								Condition</span></a></li>
+				<!-- 	<li class="nav-item"><a onclick="this.href='/loginC'"
+						class="nav-link"><span>Login</span></a></li> -->
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section class="home-slider js-fullheight owl-carousel">
+		<div class="slider-item js-fullheight"
+			style="background-image: url(images/bg_1.jpg);">
+			<div class="overlay"></div>
+			<div class="container">
+				<div
+					class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+					data-scrollax-parent="true">
+					<div class="col-md-8 text-center ftco-animate mt-5">
+						<div class="text">
+							<div class="subheading">
+								<span>Easy Wash Laundry</span>
+							</div>
+							<p>
+							<h1 class="mb-4">
+								Wash<br>
+								<span>Dry</span><br>Steam Iron
+							</h1>
+							
+							<p>All kind of Laundry Service</p>
+							<p>
+								<a href="#order-status" class="btn btn-primary py-2 px-4">Order
+									Status</a> <a href="#contact-section"
+									class="btn btn-primary btn-outline-primary py-2 px-4">Request
+									PickUp</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slider-item js-fullheight"
+			style="background-image: url(images/bg_2.jpg);">
+			<div class="overlay"></div>
+			<div class="container">
+				<div
+					class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+					data-scrollax-parent="true">
+					<div class="col-md-8 text-center ftco-animate mt-5">
+						<div class="text">
+							<div class="subheading">
+								<span>Easy Wash</span>
+							</div>
+							<p>
+							<h1 class="mb-4">
+								Automated<br>
+								<span>Washer</span><br>&amp;Dryer
+							</h1>
+							
+							<p>World Class Wash Machines</p>
+							<p>
+								<a href="#order-status" class="btn btn-primary py-2 px-4">Order
+									Status</a> <a href="#contact-section"
+									class="btn btn-primary btn-outline-primary py-2 px-4">Request
+									PickUp</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-about-section"
+		id="about-section">
+		<div class="container-fluid px-0">
+			<div class="row d-md-flex text-wrapper">
+				<div class="one-half img"
+					style="background-image: url('images/about.jpg');"></div>
+				<div
+					class="one-half half-text d-flex justify-content-end align-items-center ftco-animate">
+					<div class="text-inner pl-md-5">
+						<h3 class="heading">
+							Welcome to <span>Easy Wash</span>Laundry Service
+						</h3>
+						<p>Easy wash founded by Arvind Bisht in December 2018. Arvind
+							has an experience of holding managerial role in customer centric
+							organization with excellence in customer service. One day came
+							across an idea of laundry as he was very much concerned about his
+							during his professional reign and easy wash was founded. Everyone
+							in day to day life needs laundry, be it professional, student or
+							a household.</p>
+						<ul class="my-4">
+							<li><span class="ion-ios-checkmark-circle mr-2"></span>Easy
+								wash helps you to tame your laundry needs. As it is said “Let
+								you laundry run wild and it will run over you”.</li>
+							<li><span class="ion-ios-checkmark-circle mr-2"></span>We
+								help you with your timely needs of laundry in a hygienic
+								environment with the best customer service present in town for
+								general public.</li>
+							<li><span class="ion-ios-checkmark-circle mr-2"></span>Try
+								us and we will help control your never ending worries of your
+								laundry in an efficient and cost effective manner.</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section bg-light" id="sermons-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-12 heading-section text-center ftco-animate">
+					<span class="subheading">Services</span>
+					<h2 class="mb-4">Easy Wash Services</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="sermon-wrap ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center"
+							style="background-image: url(images/sermon-1.jpg);">
+							<div class="text-content p-4 text-center">
+								<span>Easy Wash :</span>
+								<h3>Wash</h3>
+								<p class="">
+									<a href="https://www.youtube.com/watch?v=4QxmleZeu9s"
+										class="btn-custom mb-2 p-2 text-center popup-vimeo"><span
+										class="icon-play"></span> Watch</a> <a href="/images/P7.pdf"
+										class="btn-custom p-2 text-center"><span
+										class="icon-download"></span>P7 Download</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="sermon-wrap ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center"
+							style="background-image: url(images/sermon-4.jpg);">
+							<div class="text-content p-4 text-center">
+								<span>Easy Wash :</span>
+								<h3>Pick-up and Drop-off</h3>
+								<p class="">
+									<a href="https://www.youtube.com/watch?v=4QxmleZeu9s"
+										class="btn-custom mb-2 p-2 text-center popup-vimeo"><span
+										class="icon-play"></span> Watch</a> <a href="/images/P6.pdf"
+										class="btn-custom p-2 text-center" ><span
+										class="icon-download"></span>P6 Download</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="sermon-wrap ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center"
+							style="background-image: url(images/sermon-2.jpg);">
+							<div class="text-content p-4 text-center">
+								<span>Easy Wash:</span>
+								<h3>Dry Clean</h3>
+								<p class="">
+									<a href="https://www.youtube.com/watch?v=4QxmleZeu9s"
+										class="btn-custom mb-2 p-2 text-center popup-vimeo"><span
+										class="icon-play"></span> Watch</a> <a href="/images/P5.pdf"
+										class="btn-custom p-2 text-center"><span
+										class="icon-download"></span>P5 Download</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="sermon-wrap ftco-animate">
+						<div class="img d-flex align-items-center justify-content-center"
+							style="background-image: url(images/sermon-3.jpg);">
+							<div class="text-content p-4 text-center">
+								<span>Easy Wash:</span>
+								<h3>Steam Iron</h3>
+								<p class="">
+									<a href="https://www.youtube.com/watch?v=4QxmleZeu9s"
+										class="btn-custom mb-2 p-2 text-center popup-vimeo"><span
+										class="icon-play"></span> Watch</a> <a href="/images/P4.pdf"
+										class="btn-custom p-2 text-center"><span
+										class="icon-download"></span>P4 Download</a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ftco-intro img" id="events-section"
+		style="background-image: url(images/bg_3.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row"></div>
+		</div>
+	</section>
+	<section class="ftco-section bg-light ftco-event" id="events-section">
+		<div class="container-fluid px-4 ftco-to-top">
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-12 heading-section text-center ftco-animate">
+					<span class="subheading">Packages</span>
+					<h2 class="mb-5">Packages for Every Type of User</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 col-lg-6 col-xl-4">
+					<div class="event-wrap d-flex ftco-animate">
+						<div class="img"
+							style="background-image: url(images/event-1.jpg);"></div>
+						<div class="text p-4 d-flex align-items-center">
+							<div>
+								<span class="time">STUDENT PACKAGE</span>
+								<h3>
+									<a href="#">Package for College Students</a>
+								</h3>
+								<div class="meta">
+									<p>
+										<span class="icon-user mr-1"></span> Package Code: <a href="#">0001</a>
+									</p>
+									<p>
+										<span class="icon-location"></span> Pick up and Drop facility
+										Available
+									</p>
+									<p class="mb-0">
+										<a href="/images/P2.pdf" class="btn btn-primary" >P2
+											Download Catalog</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-lg-6 col-xl-4">
+					<div class="event-wrap d-flex ftco-animate">
+						<div class="img"
+							style="background-image: url(images/event-2.jpg);"></div>
+						<div class="text p-4 d-flex align-items-center">
+							<div>
+								<span class="time">FAMILY PACKAGE</span>
+								<h3>
+									<a href="#">Exclusively for Family</a>
+								</h3>
+								<div class="meta">
+									<p>
+										<span class="icon-user mr-1"></span> Package Code: <a href="#">0002</a>
+									</p>
+									<p>
+										<span class="icon-location"></span> Pick up and Drop facility
+										Available
+									</p>
+									<p class="mb-0">
+										<a href="/images/P1.pdf" class="btn btn-primary">P1
+											Download Catalog</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-lg-6 col-xl-4">
+					<div class="event-wrap d-flex ftco-animate">
+						<div class="img"
+							style="background-image: url(images/event-3.jpg);"></div>
+						<div class="text p-4 d-flex align-items-center">
+							<div>
+								<span class="time">PAY PER USE PACKAGE</span>
+								<h3>
+									<a href="#">For less Frequent Users</a>
+								</h3>
+								<div class="meta">
+									<p>
+										<span class="icon-user mr-1"></span> Package Code: <a href="#">0003</a>
+									</p>
+									<p>
+										<span class="icon-location"></span>Pick up and Drop facility
+										Not Available
+									</p>
+									<p class="mb-0">
+										<a href="/images/P3.pdf" class="btn btn-primary" >P3
+											Download Catalog</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ftco-daily-verse img" id="terms-condition"
+		style="background-image: url(images/bg_4.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-10">
+					<div class="row justify-content-center align-items-center">
+						<div class="col-md-2 ftco-animate">
+							<div class="icon">
+								<span class=""></span>
+							</div>
+						</div>
+						<div class="col-md-10 daily-verse pl-md-5 ftco-animate">
+							<span class="subheading">Terms &amp; Conditions</span>
+							<h3 class="ion-ios-checkmark-circle mr-2">Please check your
+								valuable item, we’re not responsible for any loss</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">NO CREDIT</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">If there will be
+								any problems like electricity &amp; water supply &amp; machinery
+								breakdown or whatsoever the clothes will be delivered late</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">Clothes will be
+								delivered only on the presentation of receipts</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">If clothes are
+								wet, then please mention it before because there will be
+								difference in weight at the time of delivery</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">Please check your
+								clothes and actual weight of the clothes before leaving the
+								store, NO COMPLAINS SHALL BE ENTERTAINED after leaving the store</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">If customer is
+								giving any clothes which have color on it &amp; doesn’t mention
+								prior submitting, we’re not responsible if other clothes get
+								impacted</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">Stain removal is a
+								part of process however, complete removal of stains cannot be
+								guaranteed &amp; will be processed at customer’s risk</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">Clothes not
+								claimed within 2 months will be sold to recover the appropriate
+								amount</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">Please mention the
+								specific clothes which will shed color, prior to submitting</h3>
+							<h3 class="ion-ios-checkmark-circle mr-2">Load will be
+								preferred in the multiple of base load however, load below/above
+								base load is accepted at per kg rate bases</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ftco-section contact-section ftco-no-pb"
+		id="contact-section">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Pick Up</span>
+					<h2 class="mb-4">Register your pick up</h2>
+				</div>
+			</div>
+			<div class="row block-9">
+				<div class="col-md-7 order-md-last d-flex">
+					<form  method="POST" th:action="@{/lead}" th:object="${customer}"
+						class="bg-light p-4 p-md-5 contact-form">
+						<div class="form-group">
+						<span th:if="${inputlead}"  th:text="${inputlead}" th:class="${'alert ' + alertClass}">Message
+								Error</span>
+							<input type="text" class="form-control" placeholder="Your Name"
+								th:field="*{fname}">
+							<!--  <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
+                            Error</td> -->
+							<span th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}">Name
+								Error</span>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control"
+								placeholder="Mobile Number" id="mobile" th:field="*{mobile}">
+							<span th:if="${#fields.hasErrors('mobile')}"
+								th:errors="*{mobile}">Mobile Error</span>
+						</div>
+						<div class="form-group">
+							<div class="p-2 px-3 bg-light d-flex col-md-12">
+								<div class="bg-light icon mr-3 form-control">
+									<span class="bg-light icon-map-signs">Select Region</span>
+								</div>
+								<!--  type="datetime-local" <button type="button" class="btn dropdown-toggle mb-3" data-toggle="dropdown">Select Available Region for Pickup</button> -->
+								<select class="dropdown-toggle form-control" id="Region"
+									th:field="*{region}">
+									<option th:value="'TurnerRoad'" th:text="TurnerRoad"></option>
+									<option th:value="'SocietyArea'" th:text="SocietyArea"></option>
+									<option th:value="'PostOffice'" th:text="PostOffice"></option>
+									<option th:value="'ChanderBani'" th:text="ChanderBani"></option>
+								</select> <span th:if="${#fields.hasErrors('region')}"
+									th:errors="*{region}">Mobile Error</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="expirationDate">PickUp Time</label> <input
+								type="datetime-local" class="form-control" id="expirationDate"
+								placeholder="Expiration date" th:field="*{ref2}"
+								/>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control"
+								placeholder="Pick Up Address" id="address" th:field="*{address}">
+							<span th:if="${#fields.hasErrors('address')}"
+								th:errors="*{address}">Address Error</span>
+						</div>
+						<!--  <div class="form-group">
+                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Pick up Message" ></textarea>
+                 <input type="text" class="form-control" placeholder="Pick up Message" id="ref2" th:field="*{ref2}">
+                     <span th:if="${#fields.hasErrors('ref2')}" th:errors="*{ref2}">Message Error</span>
+              </div> -->
+						<div id="RecaptchaField1" class="g-recaptcha"
+							data-sitekey="6LfK6KcZAAAAAERfMdCIUd9ePqxvXORduTJlcv_-"></div>
+						<div class="form-group">
+							<input type="submit" value="Request Pick"
+								class="g-recaptcha btn btn-primary py-3 px-5">
+						</div>
+					</form>
+				</div>
+				<div class="col-md-5 d-flex">
+					<div class="row d-flex contact-info mb-5">
+						<div class="p-2 px-3 bg-light d-flex col-md-12">
+							<div class="col-md-10 daily-verse pl-md-5 ftco-animate">
+								<!-- <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+		    					<div th:if="${message1}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+		    						<div th:if="${message2}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+		    							<div th:if="${message3}" th:text="${message}" th:class="${'alert ' + alertClass}"></div> -->
+								<h3 th:if="${message}" th:text="${message}"
+									th:class="${'alert ' + alertClass}"></h3>
+						<!-- 		<h3 class="ion-ios-checkmark-circle mr-2">Pick up condition
+									2</h3>
+								<h3 class="ion-ios-checkmark-circle mr-2">Pick up condition
+									3</h3>
+								<h3 class="ion-ios-checkmark-circle mr-2">Pick up condition
+									4</h3>
+								<h3 class="ion-ios-checkmark-circle mr-2">Pick up condition
+									5</h3> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ftco-section contact-section ftco-no-pb"
+		id="order-status">
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Track Order</span>
+					<h2 class="mb-4">Order Status</h2>
+				</div>
+			</div>
+			<div class="row block-9">
+				<div class="col-md-7 order-md-last d-flex">
+					<form method="POST" th:action="@{/Ostatus}" th:object="${user}"
+						class="bg-light p-4 p-md-5 contact-form" id="status-form">
+						<div class="form-group">
+							<input id="inputPar" type="text" th:field="*{inputPar}"
+								class="form-control" placeholder="Enter OrderNumber or Mobile" >
+						<!-- 	<span th:if="${#fields.hasErrors('inputPar')}"
+								th:errors="*{inputPar}" th:class="${'alert' + alertClass}">Message
+								Error</span> -->
+									<span th:if="${inputPar}"  th:text="${inputPar}" th:class="${'alert ' + alertClass}">Message
+								Error</span>
+									<div th:if="${addCustMesssage}"
+									>
+									</div>
+						</div>
+						<!--    <div class="form-group">
+                <input id="Mno"  type="text" class="form-control" placeholder="Or Enter Registered Mobile NUmber">
+              </div> -->
+						<div id="RecaptchaField2" class="g-recaptcha"
+							data-sitekey="6LfK6KcZAAAAAERfMdCIUd9ePqxvXORduTJlcv_-"></div>
+						<!-- th:action="@{/signup}"       data-sitekey="reCAPTCHA_site_key" 
+        data-callback='onSubmit' 
+        data-action='submit'-->
+						<div class="form-group">
+							<button type="submit"
+								class="g-recaptcha btn btn-primary py-3 px-5">Submit</button>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-5 d-flex">
+					<div class="row d-flex contact-info mb-5">
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-paper-plane"></span>
+								</div>
+								<div th:if="${messageStat}" th:text="${messageStat}"
+									th:class="${'alert ' + alertClass}"></div>
+							</div>
+						</div>
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-paper-plane"></span>
+								</div>
+								<div th:if="${messageStat1}" th:text="${messageStat1}"
+									th:class="${'alert ' + alertClass}"></div>
+							</div>
+						</div>
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-paper-plane"></span>
+								</div>
+								<div th:if="${messageStat2}" th:text="${messageStat2}"
+									th:class="${'alert ' + alertClass}"></div>
+							</div>
+						</div>
+						<!-- <div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-paper-plane"></span>
+								</div>
+								<div th:if="${messageStat3}" th:text="${messageStat3}"
+									th:class="${'alert ' + alertClass}"></div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="ftco-section ftco-no-pt ftco-no-pb" id="locate-section">
+		<!-- <div id="map" class="bg-white" > -->
+		<div class="container">
+			<div class="row justify-content-center mb-5 pb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Contact Us</span>
+					<h2 class="mb-4">Please Contact and Locate Us</h2>
+				</div>
+			</div>
+			<div class="row block-9">
+				<div class="col-md-5 d-flex">
+					<div class="row d-flex contact-info mb-5">
+						<div class="col-md-12 ftco-animate">
+							<div class="box p-2 px-3 bg-light d-flex">
+								<div class="icon mr-3">
+									<span class="icon-map-signs"></span>
+								</div>
+								<div>
+									<p>
+										Adjecent to Eidgah,Opposite Reliance Trends,Subhash
+										Nagar,Saharanpur Road,Dehradun,248002<br>
+										<span class="icon-phone2">+919105719577</span><br>
+										<span class="icon-globe"> www.easywashdoon.com</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-7 order-md-last d-flex">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.4823233091743!2d77.98920355033856!3d30.280327881707766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x71aa824d38b7dbd0!2sEasy%20wash!5e0!3m2!1sen!2sin!4v1584242981822!5m2!1sen!2sin"
+						width="600" height="450"  style="border: 0;"
+						 aria-hidden="false" tabindex="0"></iframe>
+				</div>
+			</div>
+			</div>
+	</section>
+	<footer class="ftco-footer ftco-bg-dark ftco-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md">
+					<div class="ftco-footer-widget mb-4">
+						<h2 class="ftco-heading-2 logo">
+							<span>Easy</span> Wash
+						</h2>
+						<p>laundy quotes goes here</p>
+						<ul
+							class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+							<li class="ftco-animate"><a href="#"><span
+									class="icon-twitter"></span></a></li>
+							<li class="ftco-animate"><a
+								href="https://www.facebook.com/easywashcleaningservices/"><span
+									class="icon-facebook"></span></a></li>
+							<li class="ftco-animate"><a
+								href="https://www.instagram.com/invites/contact/?i=lkfpx0knd99r&utm_content=4cg621e"><span
+									class="icon-instagram"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script>
+							document.write(new Date().getFullYear());
+						</script>
+						All rights reserved | This template is made with <i
+							class="icon-heart color-danger" aria-hidden="true"></i> by <a
+							href="https://colorlib.com" target="_blank">EasyWash Laundy</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen">
+		<svg class="circular" >
+		<!-- 	<circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke="#eeeeee" />
+			<circle class="path" cx="24" cy="24" r="22" fill="none"
+				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /> --></svg>
+	</div>
+	<!-- <script type="text/javascript" th:src="@{/js/myscript.js}"></script> -->
+	<script type="text/javascript" th:src="@{/js/indexmyscript.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.easing.1.3.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.waypoints.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.stellar.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/aos.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/jquery.animateNumber.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/scrollax.min.js}"></script>
+	<!--
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+    -->
+	<script th:src="@{/js/main.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+</body>
+</html>

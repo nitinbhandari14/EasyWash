@@ -1,0 +1,1603 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>EasyWash Admin Console</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/css/myCustom.css">
+	
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+	
+	
+	
+	
+	
+<!-- 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+</head>
+<body onload="loadEWDates()">
+	<div  class="container tabs">
+		<ul class="nav nav-tabs">
+			<li ><a
+				class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-user" href="#home">USER</a></li>
+			<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-briefcase"
+				href="#package"> PACKAGE</a></li>
+			<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-shopping-cart"
+				href="#order"> ORDER</a></li>
+			<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-cog"
+				href="#corder"> CREATE</a></li>
+				<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-usd"
+				href="#paytab"> PAYMENT</a></li>
+					<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-inbox"
+				href="#invoicetab"> INVOICE</a></li>
+					<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-save"
+				href="#reporttab"> REPORT</a></li>
+					<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-send"
+				href="#misctab"> EXPENSES</a></li>
+				<li><a class="btn btn-primary btn-outline-primary py-2 px-4 glyphicon glyphicon-th"
+				href="#logintab"> OTHERS</a></li>
+				<li><a class="btn btn-primary btn-outline-primary py-1 px-1 glyphicon glyphicon-lock"
+				href="#logouttab"></a></li>
+				
+				
+		</ul>
+	<!--class="active"  onclick="this.href='/customer/chart/'+new Date()" class="tab-pane fade in active"	th:class="${'alert ' + alertClass}" -->
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in">
+				<h3>CUSTOMER MANAGMENT</h3>	 <a href=''
+						
+							onclick="this.href='/customer/chart/'"
+						class="btn btn-primary  py-2 px-8">View Graph</a><a><button data-toggle="modal" data-target="#addcust"
+							th:attr="data-target='#addcust'"
+							class="btn btn-primary btn-outline-primary py-2 px-4">Add
+							New Customer</button></a>
+								<div class="row">
+					<div th:if="${addCustMesssage}" th:text="${addCustMesssage}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+			<div><br>
+			<!--  th:field="*{ref2}" value="2020-07-12T12:00"-->
+				<input class="form-inline md-form mr-auto mb-4" type="number"
+						id="userInput" name="userInput"> <a href=''
+						onclick="this.href='/customer/get/'+document.getElementById('userInput').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Enter
+						ID/Mob</a><!--  <a type="submit" onclick="othername();"
+						class="btn btn-primary btn-outline-primary py-2 px-4">ww</a> -->
+							 <input
+								type="datetime-local" class="form-inline md-form mr-auto mb-4" id="startDate"
+								placeholder="Start date" 
+								><label class="btn-outline-primary py-2 px-4" th:text="To_Date"></label><input
+								type="datetime-local" class="form-inline md-form mr-auto mb-4" id="endDate"
+								placeholder="End date" 
+								><a 
+						onclick="this.href='/customer/searchCRange/'+document.getElementById('startDate').value+'/'+document.getElementById('endDate').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Search By Date</a>
+			
+				</div>
+				<div >
+		
+				</div>
+				<div class="container my-5">
+				
+					<!-- adding add modal -->
+					<div tabindex="-1" aria-labelledby="addcust" aria-hidden="true"
+						th:id="'addcust'" class="modal fade" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">×</button>
+									<h4 class="modal-title"></h4>
+								</div>
+							
+								<form id="addCuModalForm" th:action="@{/customer/addcust}"
+									method="post" th:object="${customer}">
+									<div class="modal-body">
+										<div class="form-group col-md-6">
+											<label for="name">First Name:</label> <input type="text"
+												class="form-control" id="Fname" th:field="*{fname}"
+												placeholder="Name"> <span
+												th:if="${#fields.hasErrors('fname')}" th:errors="*{fname}" >Name
+												Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">Pin Code:</label> <input type="text"
+												class="form-control" id="Pincode" placeholder="Pincode"
+												th:field="*{pincode}"> <span
+												th:if="${#fields.hasErrors('pincode')}"
+												th:errors="*{pinCode}">PinCode Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">Email:</label> <input type="text"
+												class="form-control" id="Email" placeholder="Email"
+												th:field="*{email}"><span
+												th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
+												Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">Mobile :</label> <input type="number"
+												class="form-control" id="Mobile" placeholder="Mobile"
+												th:field="*{mobile}"> <span
+												th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}">Mobile
+												Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">Address :</label> <input type="text"
+												class="form-control" id="Address" placeholder="Address"
+												th:field="*{address}"><span
+												th:if="${#fields.hasErrors('address')}"
+												th:errors="*{address}">Address Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label>Package:</label> <select class="form-control"
+												th:field="*{Subscribedpackage}">
+												 <option value="Error">Select Package</option>
+												<option th:each="p : ${listProfession}" th:value="${p}"
+													th:text="${p}" />
+											</select> <br />
+											
+										</div>
+										
+										<div class="form-group">
+											<input id="AddCuButton" type="submit" class="btn btn-primary"
+												value="Add Customer">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+			
+				</div>
+				<div class="container">
+					<div class="row">
+					<div th:if="${searchRecordCount}" th:text="${searchRecordCount+' Records Fetched'}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+						<table class="table table-hover table-responsive">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>First Name</th>
+									<th>Package</th>
+									<th>Address</th>
+									<th>Mobile</th>
+									<th>Email</th>
+									<th>Status</th>
+									<th>PickupRequest</th>
+									<th>Edit</th>
+									<th>Delete</th>
+									<th>Renew</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="customer" th:each="customer : ${customers}">
+									<td id="Idno" th:text="${customer.Idno}"></td>
+									<td id="Fname" th:text="${customer.fname}"></td>
+								
+										
+										<td id="Subscribedpackage" th:text="${customer.subscribedpackage}"></td>
+									<td id="Address" th:text="${customer.address}"></td>
+									<td id="Mobile" th:text="${customer.mobile}"></td>
+									<td id="Email" th:text="${customer.email}"></td>
+									<td id="Active" th:text="${customer.active}"></td>
+									<td id="Pickup" th:text="${customer.ref2}"></td>
+									<td><button  type="button" data-toggle="modal"
+											data-target="#edit"
+											th:attr="data-target='#edit'+${customer.Idno}"
+											class="update btn btn-warning btn-sm">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button></td>
+									<div tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+										th:id="'edit'+${customer.Idno}" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">Update Data</h4>
+												</div>
+											
+												<form th:action="@{/customer/editc}" method="post"
+													th:object="${customer}">
+													<div class="modal-body">
+														<div class="form-group col-md-6">
+															<label for="name">ID No:</label> <input type="text"
+																th:attr="value=${customer.Idno}" placeholder="Idno"
+																th:readonly="readonly" class="form-control" name="Idno"></input>
+														</div>
+														<!--     <span th:if="${#fields.hasErrors('Idno')}" th:errors="*{Idno}">dd</span> -->
+														<!-- 				<input id="Idno" type="text" class="form-control"  name="Idno" placeholder="Idno" th:text="${customer.Idno}"> -->
+														<div class="form-group col-md-6">
+															<label for="name">Customer Name:</label> <input
+																type="text" th:attr="value=${customer.fname}"
+																class="form-control" name="Fname" placeholder="Fname"></input>
+															<span th:if="${#fields.hasErrors('fname')}"
+																th:errors="*{fname}">Name Error</span>
+														</div>
+														<!--  <input id="Fname" type="text" class="form-control" name="Fname" placeholder="Fname" th:text="${customer.Fname}">
+													 -->
+														<div class="form-group col-md-6">
+															<label for="name">Package:</label>
+														
+															
+															
+															<select  class="form-control"
+												th:field="*{subscribedpackage}">
+												 <option th:attr="value=${customer.subscribedpackage}">Existing Package</option>
+												<option th:each="p : ${listProfession}" th:value="${p}"
+													th:text="${p}" />
+											</select>
+															
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Address:</label> <input type="text"
+																class="form-control" name="Address"
+																placeholder="Address"
+																th:attr="value=${customer.address}"></input> <span
+																th:if="${#fields.hasErrors('address')}"
+																th:errors="*{address}">Address Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Mobile:</label> <input type="text"
+																class="form-control" name="mobile" placeholder="Mobile"
+																th:attr="value=${customer.mobile}"> <span
+																th:if="${#fields.hasErrors('mobile')}"
+																th:errors="*{mobile}">Mobile Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Email:</label> <input type="text"
+																class="form-control" name="Email" placeholder="Email"
+																th:attr="value=${customer.email}"> <span
+																th:if="${#fields.hasErrors('email')}"
+																th:errors="*{email}">Email Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Status:</label> <input type="text"
+																class="form-control" name="Active" placeholder="Active"
+																th:attr="value=${customer.active}"> <span
+																th:if="${#fields.hasErrors('active')}"
+																th:errors="*{active}">Active Error</span>
+														</div>
+														
+														<div class="form-group">
+															<button type="submit" class="btn btn-warning">Update</button>
+													 
+ 
+														
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+														  
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<td>
+										
+										<button  
+											th:attr="data-target='#modal-warning'+${customer.Idno}"
+											data-toggle="modal" data-target="#modal-warning"
+											class="delete btn btn-danger btn-sm">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</td>
+								
+									<div  class="modal modal-warning fade in"
+										th:id="'modal-warning'+${customer.Idno}">
+										<!-- modal-warning+${customer.Idno}   modal-warning87 -->
+										<div class="modal-dialog" >
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+													<h2 class="modal-title modal-warning">Delete User</h2>
+												</div>
+												<div class="modal-body">
+													<h3>
+														Are you sure want to delete customer <span
+															class="btn-danger" th:text="${customer.fname}"></span>
+														ID: <span class="btn-danger" th:text="${customer.Idno}"></span>?
+													</h3>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-outline pull-left"
+														data-dismiss="modal">Close</button>
+													<a id="delCButton" type="button" class="btn btn-danger"
+														th:href="@{/customer/delete/{Idno}(Idno=${customer.Idno})}"><i
+														class="fa fa-check"></i>Yes</a>
+												</div>
+											</div>
+										</div>
+									</div>
+										<td>
+										
+										<button
+											th:attr="data-target='#modal-renew'+${customer.Idno}"
+											data-toggle="modal" data-target="#modal-renew"
+											class="delete btn btn-info btn-sm">
+											<span class="glyphicon glyphicon-repeat"></span>
+										</button>
+									</td>
+											<div tabindex="-1" aria-labelledby="renew" aria-hidden="true"
+										th:id="'modal-renew'+${customer.Idno}" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">Renew/Upgrade</h4>
+												</div>
+											
+												<form th:action="@{/customer/renew}" method="post"
+													th:object="${customer}">
+													<div class="modal-body">
+														<div class="form-group col-md-6">
+															<label for="name">ID No:</label> <input type="text"
+																th:attr="value=${customer.Idno}" placeholder="Idno"
+																th:readonly="readonly" class="form-control" name="Idno"></input>
+														</div>
+																<div class="form-group col-md-6">
+															<label for="name">Customer Name:</label> <input
+																type="text" th:attr="value=${customer.fname}"
+																class="form-control" name="Fname" placeholder="Fname"></input>
+															<span th:if="${#fields.hasErrors('fname')}"
+																th:errors="*{fname}">Name Error</span>
+														</div>
+														
+														<div class="form-group col-md-6">
+															<label for="name">Package:</label>
+														
+															
+															
+															<select  class="form-control"
+												th:field="*{subscribedpackage}">
+												 <option th:attr="value=${customer.subscribedpackage}">Existing Package</option>
+												<option th:each="p : ${listProfession}" th:value="${p}"
+													th:text="${p}" />
+											</select>
+															
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Address:</label> <input type="text"
+																class="form-control" name="Address"
+																placeholder="Address"
+																th:attr="value=${customer.address}"></input> <span
+																th:if="${#fields.hasErrors('address')}"
+																th:errors="*{address}">Address Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Mobile:</label> <input type="text"
+																class="form-control" name="mobile" placeholder="Mobile"
+																th:attr="value=${customer.mobile}"> <span
+																th:if="${#fields.hasErrors('mobile')}"
+																th:errors="*{mobile}">Mobile Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Email:</label> <input type="text"
+																class="form-control" name="Email" placeholder="Email"
+																th:attr="value=${customer.email}"> <span
+																th:if="${#fields.hasErrors('email')}"
+																th:errors="*{email}">Email Error</span>
+														</div>
+													
+														
+														<div class="form-group">
+															<button type="submit" class="btn btn-warning">Renew/Upgrade</button>
+													 
+ 
+														
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+														  
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									
+								</tr>
+							
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- @@@@@@@@@@@@@@@@@@@@@@@ -->
+				<div class="row" th:fragment="pagination">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:each="pageNumber : ${pageNumbers}" >
+                        <a class="page-link" th:href="@{|/home/${pageNumber}|}" th:text=${pageNumber}>1</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ sec:authorize="hasRole('USER')" -->
+			</div>
+			
+			
+			
+		</div>
+	<div id="package" class="tab-pane fade in">
+				<h3>PACKAGE MANAGMENT</h3><a>	<button  data-toggle="modal" data-target="#addpack"
+							th:attr="data-target='#addpack'"
+							class="btn add-new btn-primary btn-outline-primary py-2 px-4">
+							New Package</button></a>
+								<div class="row">
+					<div th:if="${addPackMesssage}" th:text="${addPackMesssage}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+			<div><br>
+			
+				<input class="form-inline md-form mr-auto mb-4" type="number"
+						id="userInputP" name="userInputP"> <a href=''
+						onclick="this.href='/package/get/'+document.getElementById('userInputP').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Enter
+						PId</a>
+						<input class="form-inline md-form mr-auto mb-4" type="text"
+						id="pname" name="pname"> <a href=''
+						onclick="this.href='/package/getname/'+document.getElementById('pname').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Enter
+						Package Name</a> 
+					
+			
+				</div>
+				<div >
+		
+				</div>
+				<div class="container my-5">
+				
+					<!-- adding add modal -->
+					<div tabindex="-1" aria-labelledby="addpack" aria-hidden="true"
+						th:id="'addpack'" class="modal fade" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">×</button>
+									<h4 class="modal-title"></h4>
+								</div>
+							
+								<form id="addCModalForm" th:action="@{/package/addp}"
+									method="post" th:object="${pack}">
+									<div class="modal-body">
+										<div class="form-group col-md-6">
+											<label for="name">Package Name :</label> <input type="text"
+												class="form-control" id="Pname" th:field="*{pname}"
+												placeholder="PackageName"> <span
+												th:if="${#fields.hasErrors('pname')}" th:errors="*{pname}" >
+												Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">&#8377;Price :</label> <input type="number"
+												class="form-control" id="price" placeholder="price"
+												th:field="*{price}"> <span
+												th:if="${#fields.hasErrors('price')}"
+												th:errors="*{price}">Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">Load in KG :</label> <input type="number"
+												class="form-control" id="loadkg" placeholder="LoadinKG"
+												th:field="*{loadkg}"><span
+												th:if="${#fields.hasErrors('loadkg')}" th:errors="*{loadkg}">
+												Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">Validity in Days :</label> <input type="number"
+												class="form-control" id="validdays" placeholder="validdays"
+												th:field="*{validdays}"> <span
+												th:if="${#fields.hasErrors('validdays')}" th:errors="*{validdays}">
+												Error</span>
+										</div>
+										<div class="form-group col-md-6">
+											<label for="name">Total Piece :</label> <input type="number"
+												class="form-control" id="totalpiece" placeholder="totalpiece"
+												th:field="*{totalpiece}"><span
+												th:if="${#fields.hasErrors('totalpiece')}"
+												th:errors="*{totalpiece}"> Error</span>
+										</div>
+							
+										<div class="form-group">
+											<input id="AddCButton" type="submit" class="btn btn-primary"
+												value="Add Package">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+			
+				</div>
+				<div class="container">
+					<div class="row">
+					<div th:if="${searchPackCount}" th:text="${searchPackCount+' Records Fetched'}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+						<table class="table table-hover table-responsive">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Package Name</th>
+									<th>&#8377;Package Price</th>
+									<th>Package Load</th>
+									<th>Validity</th>
+									<th>Total Piece</th>
+									<th>ref1</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="pack" th:each="pack : ${packs}">
+									<td id="Idno" th:text="${pack.idno}"></td>
+									<td id="Pname" th:text="${pack.pname}"></td>
+									<!-- 	<td id="l1" th:text="${customer.Subscribedpackage}"></td>       th:attr="data-target='#modal-warning'+${customer.Idno}"-->
+									<!-- <td id="Subscribedpackage"
+										th:switch="${customer.subscribedpackage}"><span
+										th:case="'S'" th:text="Student"></span> <span th:case="'F'"
+										th:text="Family"></span> <span th:case="'G'"
+										th:text="General"></span></td> -->
+									<td id="Price" th:text="${pack.price}"></td>
+									<td id="Load" th:text="${pack.loadkg}"></td>
+									<td id="Valid" th:text="${pack.validdays}"></td>
+									<td id="TotalPiece" th:text="${pack.totalpiece}"></td>
+										<td id="modifyuser" th:text="${pack.modifyuser}"></td>
+									<td><button  type="button" data-toggle="modal"
+											data-target="#edit"
+											th:attr="data-target='#edit'+${pack.idno}"
+											class="update btn btn-warning btn-sm">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button></td>
+									<div tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+										th:id="'edit'+${pack.idno}" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">Update Package</h4>
+												</div>
+											
+												<form th:action="@{/package/editc}" method="post"
+													th:object="${pack}">
+													<div class="modal-body">
+														<div class="form-group col-md-6">
+															<label for="name">Package ID:</label> <input type="text"
+																th:attr="value=${pack.idno}" placeholder="idno"
+																th:readonly="readonly" class="form-control" name="idno"></input>
+														</div>
+														<!--     <span th:if="${#fields.hasErrors('Idno')}" th:errors="*{Idno}">dd</span> -->
+														<!-- 				<input id="Idno" type="text" class="form-control"  name="Idno" placeholder="Idno" th:text="${customer.Idno}"> -->
+														<div class="form-group col-md-6">
+															<label for="name">Package Name:</label> <input
+																type="text" th:attr="value=${pack.pname}"
+																class="form-control" name="pname" placeholder="pname"></input>
+															<span th:if="${#fields.hasErrors('pname')}"
+																th:errors="*{pname}">Name Error</span>
+														</div>
+													
+										
+														<div class="form-group col-md-6">
+															<label for="name">&#8377;Package Price:</label> <input type="number"
+																class="form-control" name="price"
+																placeholder="price"
+																th:attr="value=${pack.price}"></input> <span
+																th:if="${#fields.hasErrors('price')}"
+																th:errors="*{price}">Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Load in KG :</label> <input type="number"
+																class="form-control" name="loadkg" placeholder="loadkg"
+																th:attr="value=${pack.loadkg}"> <span
+																th:if="${#fields.hasErrors('loadkg')}"
+																th:errors="*{loadkg}">Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Validity in Days:</label> <input type="number"
+																class="form-control" name="validdays" placeholder="validdays"
+																th:attr="value=${pack.validdays}"> <span
+																th:if="${#fields.hasErrors('validdays')}"
+																th:errors="*{validdays}">Error</span>
+														</div>
+														<div class="form-group col-md-6">
+															<label for="name">Total piece:</label> <input type="number"
+																class="form-control" name="totalpiece" placeholder="totalpiece"
+																th:attr="value=${pack.totalpiece}"> <span
+																th:if="${#fields.hasErrors('totalpiece')}"
+																th:errors="*{totalpiece}">Error</span>
+														</div>
+														<!-- 	<div class="modal-footer"> -->
+														<!-- 	th:href="@{/customer/edit/{Idno}(Idno=${customer.Idno})}"
+														type="button" -->
+														<div class="form-group">
+															<button type="submit" class="btn btn-warning">Update</button>
+															<!-- 	<a type="button" class="btn btn-outline"
+														th:href="@{/customer/delete/{Idno}(Idno=${customer.Idno})}"><i
+														class="fa fa-check"></i>Yes</a> -->
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+														<!-- </div> -->
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<td>
+										
+										<button 
+											th:attr="data-target='#modal-warning'+${pack.idno}"
+											data-toggle="modal" data-target="#modal-warning"
+											class="delete btn btn-danger btn-sm">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</td>
+								
+									<div class="modal modal-warning fade in"
+										th:id="'modal-warning'+${pack.idno}">
+										<!-- modal-warning+${customer.Idno}   modal-warning87 -->
+										<div class="modal-dialog" >
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+													<h2 class="modal-title modal-warning">Delete User</h2>
+												</div>
+												<div class="modal-body">
+													<h3>
+														Are you sure want to delete Package <span
+															class="btn-danger" th:text="${pack.pname}"></span>
+														ID: <span class="btn-danger" th:text="${pack.idno}"></span>?
+													</h3>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-outline pull-left"
+														data-dismiss="modal">Close</button>
+													<a id="delCButton" type="button" class="btn btn-danger"
+														th:href="@{/package/delete/{Idno}(Idno=${pack.idno})}"><i
+														class="fa fa-check"></i>Yes</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</tr>
+							
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!-- @@@@@@@@@@@@@@@@@@@@@@@ -->
+				<div class="row" th:fragment="pagination">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:each="pageNumber : ${packpageNumbers}" >
+                        <a class="page-link" th:href="@{|/pack/${pageNumber}|}" th:text=${pageNumber}>1</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+			</div>
+			
+			
+			
+		</div>
+			<div id="order" class="tab-pane fade in">
+				<h3>ORDER MANAGMENT</h3>
+				<div th:if="${addPackMesssage}" th:text="${addPackMesssage}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+			<div><br>
+			
+				<input class="form-inline md-form mr-auto mb-4" type="number"
+						id="userInputO" name="userInputO"> <a href=''
+						onclick="this.href='/order/get/'+document.getElementById('userInputO').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">OID</a>
+						<input class="form-inline md-form mr-auto mb-1" type="number"
+						id="CID" name="CID"> <a href=''
+						onclick="this.href='/order/getCID/'+document.getElementById('CID').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">CID</a> 
+						
+						 <input
+								type="datetime-local" class="form-inline md-form mr-auto mb-6" id="startDateO"
+								placeholder="Start date">
+															<select  id="OStatus" class="form-inline md-form mr-auto mb-4" >
+														
+                        <option class="form-inline md-form mr-auto mb-4" th:each="oref : ${T(com.easywash.model.OrderStatusBeforeINV).values()}"
+                                th:value="${oref}"
+                                th:text="${oref}">
+                        </option>
+                        </select>
+														
+													
+						
+						<input
+								type="datetime-local" class="form-inline md-form mr-auto mb-6" id="endDateO"
+								placeholder="End date" 
+								><a 
+						onclick="this.href='/order/searchORange/'+document.getElementById('startDateO').value+'/'+document.getElementById('endDateO').value"
+						class="btn btn-primary btn-outline-primary py-2 px-6">Search</a>
+					
+			
+				</div>
+				<div class="container">
+					<div class="row">
+					<div th:if="${searchOrderCount}" th:text="${searchOrderCount}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+						<table class="table table-hover table-responsive">
+							<thead>
+								<tr>
+									<th>OrderID</th>
+									<th>Payment</th>
+									<th>CustomerID</th>
+									<th>Status</th>
+									<th>Package</th>
+									<th>CurrentLoad</th>
+									<th>OrderDate</th>
+									<th>Address</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="order" th:each="order : ${orders}">
+									<td id="OrderID" th:text="${order.Idno}"></td>
+									<td id="Payment" th:text="${order.payment}"></td>
+								
+										
+										<td id="CustomerID"  th:text="${order.cref}"></td>
+									<td id="Status" th:text="${order.oref}"></td>
+									<td id="Package" th:text="${order.pref}"></td>
+									<td id="CurrentLoad" th:text="${order.weightloadpiece}"></td>
+									<td id="OrderDate"  th:text="${#dates.format(order.createtts, 'dd-MMM-yyyy HH:mm')}"></td>
+									<td id="Address" th:text="${order.ref1}"></td>
+									<td><button  type="button" data-toggle="modal"
+											data-target="#edit"
+											th:attr="data-target='#edit'+${order.Idno}"
+											class="update btn btn-warning btn-sm">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button></td>
+									<div tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+										th:id="'edit'+${order.Idno}" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">Update Data</h4>
+												</div>
+											
+												<form th:action="@{/order/edito}" method="post"
+													th:object="${order}">
+													<div class="modal-body">
+														<div class="form-group">
+															<label for="name">ID No:</label> <input type="text"
+																th:attr="value=${order.Idno}" placeholder="Idno"
+																th:readonly="readonly" class="form-control" name="Idno"></input>
+														</div>
+															<div class="form-group">
+															<label for="name">WashNotes:</label> <input th:readonly="readonly" 
+																type="text" th:attr="value=${order.notes}"
+																class="form-control" name="Fname" placeholder="Notes"></input>
+															<span th:if="${#fields.hasErrors('notes')}"
+																th:errors="*{notes}">Name Error</span>
+														</div>
+														<!--  <input id="Fname" type="text" class="form-control" name="Fname" placeholder="Fname" th:text="${customer.Fname}">
+													 -->
+														<div class="form-group">
+															<label for="name">OrderStatus:</label>
+														
+															
+															
+															<select  class="form-control"
+												th:field="*{oref}">
+												<option th:each="p : ${orderStatuses}" th:value="${p}"
+													th:text="${p}" />
+											</select>
+															
+														</div>
+														
+													
+														
+														<div class="form-group">
+															<button type="submit" class="btn btn-warning">Update</button>
+														
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+														<!-- </div> -->
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<td>
+										
+										<button 
+											th:attr="data-target='#modal-warning'+${order.Idno}"
+											data-toggle="modal" data-target="#modal-warning"
+											class="delete btn btn-danger btn-sm">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</td>
+								
+									<div class="modal modal-warning fade in"
+										th:id="'modal-warning'+${order.Idno}">
+											<div class="modal-dialog" >
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+													<h2 class="modal-title modal-warning">Delete Order</h2>
+												</div>
+												<div class="modal-body">
+													<h3>
+														Are you sure want to delete Order <span
+															class="btn-danger" th:text="${order.Idno}"></span>
+														having CID: <span class="btn-danger" th:text="${order.cref}"></span>?
+													</h3>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-outline pull-left"
+														data-dismiss="modal">Close</button>
+													<a id="delOButton" type="button" class="btn btn-danger"
+														th:href="@{/order/delete/{Idno}(Idno=${order.Idno})}"><i
+														class="fa fa-check"></i>Yes</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</tr>
+							
+							</tbody>
+						</table>
+					</div>
+					
+						<div class="row" th:fragment="pagination">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:each="pageNumber : ${orderpageNumbers}" >
+                        <a class="page-link" th:href="@{|/order/${pageNumber}|}" th:text=${pageNumber}>1</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+				</div>
+			<!-- 	<form class="form-inline md-form mr-auto mb-4">
+					<input class="form-control mr-sm-2" type="text"
+						placeholder="Search" aria-label="Search">
+					<button class="btn btn-primary btn-outline-primary py-2 px-4"
+						type="submit">Search</button>
+				</form> -->
+				
+			</div>
+				<div id="paytab" class="tab-pane fade in">
+				<h3>PAYMENT MANAGMENT</h3>
+				
+				
+						<input class="form-inline md-form mr-auto mb-4" type="number"
+						id="userInputLine" name="userInputLine"> <a href=''
+						onclick="this.href='/orderline/get/'+document.getElementById('userInputLine').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Invoices</a>
+				<div class="container">
+					<div class="row">
+					<div th:if="${searchPaymentCount}" th:text="${searchPaymentCount}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+						<table class="table table-hover table-responsive">
+							<thead>
+								<tr>
+									<th>InvID</th>
+									<th>PaymentStatus</th>
+									<th>Payment</th>
+									<th>TransactionID</th>
+									<th>OrdID</th>
+									<th>InvoiceKey</th>
+									<th>InvoiceDate</th>
+									<th>CID</th>
+									<th>View</th>
+									<th>Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="order" th:each="payment : ${payments}">
+									<td id="OrderID" th:text="${payment.Idno}"></td>
+									<td id="PaymentStatus" th:text="${payment.linesubtotal}"></td>
+								
+										
+										<td id="Payment"  th:text="${payment.lactive}"></td>
+									<td id="TransactionID" th:text="${payment.pref}"></td>
+									<td id="OrderID" th:text="${payment.ofref}"></td>
+									<td id="InvoiceKey" th:text="${payment.olkey}"></td>
+									<td id="InvoiceDate"  th:text="${#dates.format(payment.createtts, 'dd-MMM-yyyy HH:mm')}"></td>
+									<td id="CustomerID" th:text="${payment.cref}"></td>
+									<td><button th:attr="onclick='viewDetailInvoice(\'' + ${payment.Idno}+  '\');'" 
+									type="button" data-toggle="modal"
+											data-target="#editi"
+											
+											class="update btn btn-warning btn-sm">
+											<span class="glyphicon glyphicon-eye-open"></span>
+										</button></td>
+									<div tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+										th:id="editi" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">View Data</h4>
+												</div>
+											
+												<form>
+													<div class="modal-body" id="invoiceDetail">
+														
+														<div class="form-group">
+														
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+														<!-- </div> -->
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<td>
+										
+										<button
+											th:attr="data-target='#modal-warning-payment'+${payment.Idno}"
+											data-toggle="modal" data-target="#modal-warning-payment"
+											class="delete btn btn-danger btn-sm">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</td>
+								
+									<div class="modal modal-warning fade in"
+										th:id="'modal-warning-payment'+${payment.Idno}">
+											<div class="modal-dialog" >
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+													<h2 class="modal-title modal-warning">Delete Invoice</h2>
+												</div>
+												<div class="modal-body">
+													<h3>
+														Are you sure want to delete Invoice <span
+															class="btn-danger" th:text="${payment.Idno}"></span>
+														having Amount: <span class="btn-danger" th:text="${payment.lactive}"></span>?
+													</h3>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-outline pull-left"
+														data-dismiss="modal">Close</button>
+													<a id="delOButton" type="button" class="btn btn-danger"
+														th:href="@{/orderline/delete/{Idno}(Idno=${payment.Idno})}"><i
+														class="fa fa-check"></i>Yes</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</tr>
+							
+							</tbody>
+						</table>
+					</div>
+					
+						<div class="row" th:fragment="pagination">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:each="pageNumber : ${paymentpageNumbers}" >
+                        <a class="page-link" th:href="@{|/orderline/${pageNumber}|}" th:text=${pageNumber}>1</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+				</div>
+				
+			</div>
+						<div id="invoicetab" class="tab-pane fade in">
+				<h3>INVOICE MANAGMENT</h3>
+				<div th:if="${addInvoiceMesssage}" th:text="${addInvoiceMesssage}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+			<div><br>
+			
+			<!-- <input class="form-inline md-form mr-auto mb-4" type="text"
+						id="userInputI" name="userInputI"> <a href=''
+						onclick="this.href='/invoice/get/'+document.getElementById('userInputI').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Status</a>  onclick="showInvoices('document.getElementById('INo').value');"-->
+						   <select class="form-inline md-form mr-auto mb-4" id="userInputI" >
+						  <option 
+                    th:value="COMPLETED"
+                    th:text="COMPLETED"> </option> 
+            <option 
+                    th:value="INVOICED"
+                    th:text="INVOICED"> </option>
+                    <option 
+                    th:value="DELIVERED"
+                    th:text="DELIVERED">
+                    </option></select>
+                                <a href=''
+                              	onclick="this.href='/invoice/get/'+document.getElementById('userInputI').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Status</a>
+						
+                    
+						<input class="form-inline md-form mr-auto mb-4" type="number"
+						id="INo" name="INo" placeholder="OrderID">
+						<a class="update btn btn-warning btn-sm"
+						  onclick="showInvoices(document.getElementById('INo').value)"
+					
+							  data-toggle="modal">
+											<span class="glyphicon glyphicon-envelope">Email</span>
+										</a>
+										<div tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+										th:id="totalI" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												
+													<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">Total INVOICES</h4>
+												</div>
+													
+											
+													<div class="modal-body" id="invoiceTotal">
+														
+													</div>
+											
+											</div>
+										</div>
+									</div>
+						<!--  <a href=''
+						onclick="this.href='/invoice/getINo/'+document.getElementById('INo').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">OrderNo</a>  -->
+						 <input
+								type="datetime-local" class="form-inline md-form mr-auto mb-4" id="startDateI"
+								placeholder="Start date" 
+								><label class="btn-outline-primary py-2 px-4" th:text="To_Date"></label><input
+								type="datetime-local" class="form-inline md-form mr-auto mb-4" id="endDateI"
+								placeholder="End date" 
+								><a 
+						onclick="this.href='/invoice/searchORange/'+document.getElementById('startDateI').value+'/'+document.getElementById('endDateI').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">SearchByDate</a>
+					
+			
+				</div>
+				<div class="container">
+					<div class="row">
+					<div th:if="${searchInvoiceCount}" th:text="${searchInvoiceCount}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+						<table class="table table-hover table-responsive">
+							<thead>
+								<tr>
+									<th>OrderID</th>
+									<th>Payment</th>
+									<th>CustomerID</th>
+									<th>Status</th>
+									<th>Package</th>
+									<th>CurrentLoad</th>
+									<th>OrderDate</th>
+									<th>Address</th>
+									<th>Invoice</th>
+									<th>Delivered</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="invoice" th:each="invoice : ${invoices}">
+									<td id="InvoiceOrderID" th:text="${invoice.Idno}"></td>
+									<td id="Payment" th:text="${invoice.payment}"></td>
+								
+										
+										<td id="CustomerID"  th:text="${invoice.cref}"></td>
+									<td id="Status" th:text="${invoice.oref}"></td>
+									<td id="Package" th:text="${invoice.pref}"></td>
+									<td id="CurrentLoad" th:text="${invoice.weightloadpiece}"></td>
+									<td id="OrderDate"  th:text="${#dates.format(invoice.createtts, 'dd-MMM-yyyy HH:mm')}"></td>
+									<td id="Address" th:text="${invoice.ref1}"></td>
+								
+									<td><button 
+											class="update btn btn-warning btn-sm" th:attr="onclick='showMyModalSetTitle(\'' + ${invoice.Idno}+  '\',\'' + ${invoice.cref}+  '\');'" type="button" data-toggle="modal">
+											<span class="glyphicon glyphicon-pencil"></span>
+										</button></td>
+									<div tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+										th:id="editI" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												
+													<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">Create INVOICE</h4>
+												</div>
+													
+												<form action="/invoice/dummy" method="post"
+													>
+													<div class="modal-body" id="invoicebody">
+														
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									<td>
+										
+										<button
+											th:attr="data-target='#modal-warning'+${invoice.Idno}"
+											data-toggle="modal" data-target="#modal-warning"
+											class="delete btn glyphicon glyphicon-thumbs-up btn-sm">
+											<span class="glyphicon"></span>
+										</button>
+									</td>
+								
+									<div class="modal modal-warning fade in"
+										th:id="'modal-warning'+${invoice.Idno}">
+														<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">Status Update</h4>
+												</div>
+											
+												<form th:action="@{/invoice/editi}" method="post"
+													th:object="${invoice}">
+													<div class="modal-body">
+														<div class="form-group">
+															<label for="name">OrderNo:</label> <input type="text"
+																th:attr="value=${invoice.Idno}" placeholder="Idno"
+																th:readonly="readonly" class="form-control" name="Idno"></input>
+														</div>
+															<div class="form-group">
+															<label for="name">PaymentType:</label> <input th:readonly="readonly" 
+																type="text" th:attr="value=${invoice.payment}"
+																class="form-control" name="payment" placeholder="Notes"></input>
+															<span th:if="${#fields.hasErrors('notes')}"
+																th:errors="*{notes}">Name Error</span>
+														</div>
+														<!--  <input id="Fname" type="text" class="form-control" name="Fname" placeholder="Fname" th:text="${customer.Fname}">
+													 -->
+														<div class="form-group">
+															<label for="name">OrderStatus:</label>
+														
+															
+															
+															<select  class="form-control"
+												th:field="*{oref}">
+												<option th:value="DELIVERED"
+													th:text="DELIVERED" />
+											</select>
+															
+														</div>
+														
+													
+														
+														<div class="form-group">
+															<button type="submit" class="btn btn-warning">Update</button>
+														
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+														<!-- </div> -->
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+									
+								</tr>
+							
+							</tbody>
+						</table>
+					</div>
+					
+						<div class="row" th:fragment="pagination">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:each="pageNumber : ${invoicepageNumbers}" >
+                        <a class="page-link" th:href="@{|/invoice/${pageNumber}|}" th:text=${pageNumber}>1</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+				</div>
+			
+				
+			</div>
+			<div id="reporttab" class="tab-pane fade in">
+				<h3>DAILY REPORT</h3>
+				
+				<form class="form-inline md-form mr-auto mb-4">
+					<input class="form-control mr-sm-2" type="text"
+						placeholder="Search" aria-label="Search">
+					<button  class="btn btn-primary btn-outline-primary py-2 px-4"
+						type="submit">Search</button>
+				</form>
+				<p>REPORT</p>
+				<h3>WEEKLY REPORT</h3>
+				
+				<form class="form-inline md-form mr-auto mb-4">
+					<input class="form-control mr-sm-2" type="text"
+						placeholder="Search" aria-label="Search">
+					<button  class="btn btn-primary btn-outline-primary py-2 px-4"
+						type="submit">Search</button>
+				</form>
+				<p>REPORT</p>
+			</div>
+				<div id="logintab" class="tab-pane fade in">
+				<h3>ROLE</h3>
+				
+				<form class="form-inline md-form mr-auto mb-4">
+					<input class="form-control mr-sm-2" type="text"
+						placeholder="Search" aria-label="Search">
+					<button  class="btn btn-primary btn-outline-primary py-2 px-4"
+						type="submit">Search</button>
+				</form>
+				<p>ROLE MANAGMENT</p>
+				<h3>USER</h3>
+				
+				<form class="form-inline md-form mr-auto mb-4">
+					<input class="form-control mr-sm-2" type="text"
+						placeholder="Search" aria-label="Search">
+					<button  class="btn btn-primary btn-outline-primary py-2 px-4"
+						type="submit">Search</button>
+				</form>
+				<p>USER MANAGMENT</p>
+			</div>
+				<div id="logouttab" class="tab-pane fade in">
+				<h3>LOGOUT</h3>
+				
+				 <div class="container">
+    <div sec:authorize="isAuthenticated()">
+        <form id="logoutForm" method="POST" th:action="@{/logout}">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+Authenticated user roles:
+        <div sec:authentication="principal.authorities"></div>
+        <h2>Welcome <span sec:authentication="name"></span> | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+    </div>
+  </div>
+				
+			</div>
+				<div id="misctab" class="tab-pane fade in">
+				<h3>EXPENSE MANAGMENT</h3>
+				<div th:if="${searchExpenseCount}" th:text="${searchExpenseCount}"
+									th:class="${'alert ' + alertClass}">
+									</div>
+				
+				<div class="form-inline md-form mr-auto mb-4">
+				
+				<!-- 	<input class="form-control mr-sm-2" type="number" id="userInputE" name="userInputE"
+						placeholder="Search" aria-label="Search"> -->
+						<select   id="userInputE" name="userInputE" class='form-control' >
+							 <option>
+                        </option>							
+                        <option th:each="reserve : ${T(com.easywash.model.Expense).values()}"
+                                th:value="${reserve}"
+                                th:text="${reserve}">
+                        </option>
+                        </select>
+					<a onclick="this.href='/expense/get/'+document.getElementById('userInputE').value" class="btn btn-primary btn-outline-primary py-2 px-4">Search</a>
+							 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addexpense"
+							th:attr="data-target='#addexpense'" >Add Expense</button></div>
+								<div class="container my-5">
+				
+					<!-- adding add modal -->
+					<div tabindex="-1" aria-labelledby="addexpense" aria-hidden="true"
+						th:id="'addexpense'" class="modal fade" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">×</button>
+									<h4 class="modal-title"></h4>
+								</div>
+							
+								<form id="addEModalForm" th:action="@{/expense/add}"
+									method="post" th:object="${expense}">
+									<div class="modal-body">
+										<!-- <div class="form-group col-md-6">
+											<label for="name">Name :</label> <input type="text"
+												class="form-control" id="reserve" th:field="*{reserve}"
+												placeholder="ExpenseName"> <span
+												th:if="${#fields.hasErrors('reserve')}" th:errors="*{reserve}" >
+												Error</span>
+										</div> th:field="*{reserveid}" -->
+										<div class="form-group">
+															<label  for="name">Expense Name:</label> 
+															<select th:field="*{reserve}" class='form-control' >
+														
+                        <option th:each="reserve : ${T(com.easywash.model.Expense).values()}"
+                                th:value="${reserve}"
+                                th:text="${reserve}">
+                        </option>
+                        </select>
+														
+														</div>
+										<div class="form-group col-md-6">
+											<label for="name">Amount :</label> <input type="number"
+												class="form-control" id="reserveid" placeholder="amount"
+												th:field="*{reserveid}"> <span
+												th:if="${#fields.hasErrors('reserveid')}"
+												th:errors="*{reserveid}">Error</span>
+										</div>
+								
+										<div class="form-group">
+											<input id="AddEButton" type="submit" class="btn btn-primary"
+												value="Add Expense">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+			
+				</div>
+				<div class="container">
+					<div class="row">
+				
+						<table class="table table-hover table-responsive">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Amount</th>
+									<th>Date</th>
+									<th>Delete</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr id="expense" th:each="expense : ${expenses}">
+									<td id="ExpenseID" th:text="${expense.Idno}"></td>
+									<td id="Name" th:text="${expense.reserve}"></td>
+								
+										
+										<td id="Amount"  th:text="${expense.reserveid}"></td>
+									<td id="OrderDate"  th:text="${#dates.format(expense.createtts, 'dd-MMM-yyyy HH:mm')}"></td>
+								
+									<td>	<button 
+											th:attr="data-target='#modal-warning'+${expense.Idno}"
+											data-toggle="modal" data-target="#modal-warning"
+											class="delete btn btn-danger btn-sm">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button></td>
+									<div class="modal modal-warning fade in"
+										th:id="'modal-warning'+${expense.Idno}">
+											<div class="modal-dialog" >
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+													<h2 class="modal-title modal-warning">Delete Expense</h2>
+												</div>
+												<div class="modal-body">
+													<h3>
+														Are you sure want to delete ExpenseID <span
+															class="btn-danger" th:text="${expense.Idno}"></span>
+														having Amount: <span class="btn-danger" th:text="${expense.reserveid}"></span>
+													</h3>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-outline pull-left"
+														data-dismiss="modal">Close</button>
+													<a id="delOButton" type="button" class="btn btn-danger"
+														th:href="@{/expense/delete/{Idno}(Idno=${expense.Idno})}"><i
+														class="fa fa-check"></i>Yes</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+						<div class="row" th:fragment="pagination">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:each="pageNumber : ${expensepageNumbers}" >
+                        <a class="page-link" th:href="@{|/expense/${pageNumber}|}" th:text=${pageNumber}>1</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+				</div>
+			</div>
+				<div id="corder" class="tab-pane fade in">
+				<h2>ORDER CREATION</h2>
+			<div><br>
+			<!--  th:field="*{ref2}" value="2020-07-12T12:00"-->
+				<input class="form-inline md-form mr-auto mb-4" type="number"
+						id="userInput1" name="userInput1"> <a href=''
+						onclick="this.href='/ordercreate/get/'+document.getElementById('userInput1').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Enter CustID</a><!-- <!--  <a type="submit" onclick="othername();"
+						class="btn btn-primary btn-outline-primary py-2 px-4">ww</a> -->
+								<!-- <input class="form-inline md-form mr-auto mb-4" type="number"
+						id="userInput2" name="userInput2"> <a href=''
+						onclick="this.href='/customer/get/'+document.getElementById('userInput2').value"
+						class="btn btn-primary btn-outline-primary py-2 px-4">Search CustID</a> -->
+							<div th:if="${messageOrder}" th:text="${messageOrder}"
+									th:class="${'alert ' + alertClass}"></div>
+							
+			
+				</div>
+  <section class="order-form my-4 mx-4" th:each="customer : ${ocustomers}">
+    <div class="container pt-4">
+
+      <div class="row">
+       <div  class="col-12">
+	
+          <div class="row mt-3 mx-4">
+            
+            <div class="col-12 col-sm-1 mt-2 mt-sm-0">
+           	<label for="name">CID</label> 
+              <label class="order-form-input"  th:text="${customer.Idno}"></label>
+            </div>
+            <div class="col-12 col-sm-1 mt-2 mt-sm-0">
+             	<label for="name">CName</label>             
+              <label class="order-form-input"  th:text="${customer.fname}"></label>
+            </div>
+             <div class="col-12 col-sm-2 mt-2 mt-sm-0">
+              <label for="name">PickUpRequest</label>            
+              <label class="order-form-input" th:text="${customer.ref2}"></label>
+            </div>
+             <div class="col-12 col-sm-2 mt-2 mt-sm-0">
+             <label for="name">Address</label>             
+              <label class="order-form-input" th:text="${customer.address}"></label>
+            </div>
+             <div class="col-12 col-sm-2 mt-3 mt-sm-0">
+             <label for="name">Mobile</label>             
+              <label class="order-form-input" th:text="${customer.mobile}"></label>
+            </div>
+          
+             <div class="col-12 col-sm-3 mt-2 mt-sm-0">
+               <label for="name">CustomerAdded</label>
+              <label class="order-form-input" th:text="${customer.createtts}"></label>
+            </div>
+            
+          </div>
+
+          <div class="row mt-3 mx-4">
+           
+            <div class="col-12 col-sm-1 mt-2 mt-sm-0">
+             <label for="name">Package</label>           
+              <label class="order-form-input" th:text="${customer.subscribedpackage}"></label>
+            </div>
+            <div class="col-12 col-sm-1 mt-2 mt-sm-0">
+             <label for="name">PackExpireIn</label>
+               <label class="order-form-input" th:text="${daysLeft}"></label>
+            </div>
+             <div class="col-12 col-sm-1 mt-2 mt-sm-0">
+               <label for="name">LoadLeft</label>
+              <label class="order-form-input" th:text="${loadLeft}"></label>
+            </div> 
+              </div>
+
+          <div class="form-inline md-form mr-auto mb-4">
+            <div class="form-inline md-form mr-auto mb-4">
+              <button type="button" data-toggle="modal" data-target="#edit"
+											th:attr="data-target='#edit'+${customer.Idno}" id="btnSubmit" 
+											class="btn btn-primary btn-outline-primary py-2 px-4 center-block">Create</button>
+            </div>
+          </div>
+
+          			<div tabindex="-1" aria-labelledby="edit" aria-hidden="true"
+										th:id="'edit'+${customer.Idno}" class="modal fade"
+										role="dialog">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">×</button>
+													<h4 class="modal-title">CREATE ORDER</h4>
+												</div>
+											
+												<form th:action="@{/ordercreate/addOrder}" method="post"
+													th:object="${customer}">
+													<div class="modal-body">
+														<div class="form-group">
+															<label for="name">IDNo:</label> <input type="text"
+																th:attr="value=${customer.Idno}" placeholder="Idno"
+																th:readonly="readonly" class="form-control" name="Idno"></input>
+															<div class="form-group">
+															<label for="name">Name:</label> <input
+																type="text" th:attr="value=${customer.fname}"
+																th:readonly="readonly" class="form-control" name="Fname" placeholder="Fname"></input>
+															<span th:if="${#fields.hasErrors('fname')}"
+																th:errors="*{fname}">Name Error</span>
+														</div>
+															<div class="form-group">
+															<label for="name">CurrentLoad:</label> <input  
+																class="form-control" th:name="cLoad" th:placeholder="Load" type="number" step="0.01" >
+														</div>
+														<div class="form-group">
+															<label for="name">Comments:</label> <input type="text" 
+																class="form-control" th:name="comments" placeholder="comment">
+														</div>
+														
+														<div class="form-group">
+															<button type="submit" class="btn btn-warning">Confirm</button>
+														
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+														</div>
+														
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+          
+
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+       	</div>
+			</div>
+		
+			
+		</div>
+		</div>
+		
+
+	
+	<script type="text/javascript">
+	
+		//};
+		/* function othername() {
+		 var input = document.getElementById("userInput").value;
+		 console.log(input);
+		 alert(input); */
+	</script>
+		<!-- <script type="text/javascript"
+		th:src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+	<script type="text/javascript" th:src="@{/js/myscript.js}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <meta charset="utf-8">
+      <title>Create an account</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+  </head>
+
+  <body>
+
+    <div class="container">
+
+        <form method="POST" class="form-signup" th:object="${user}" th:action="@{/registration}">
+            <h2 class="form-signin-heading">Create Account</h2>
+           <!--  <div class="form-group">
+                <input type="text" id="name"  th:name="name" class="form-control" placeholder="Name">
+             </div> -->
+              <div class="form-group">
+                <input type="text" id="username"  th:name="username" class="form-control" placeholder="Username">
+             </div>
+
+            <div class="form-group">
+                <input type="password" id="password" th:name="password" class="form-control" placeholder="Password">
+            </div>
+
+           <div class="form-group">
+                <input type="text"  id="email"  th:name="email" class="form-control" placeholder="Email">
+             </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+   </body>
+</html>

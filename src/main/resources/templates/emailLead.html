@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all">User Registration template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+   <p>Hello EasyWashTeam</p>
+
+   <p>
+      Greeting! Lead generated
+    </p>
+    <p>
+     <span th:text="${name}"> </span> has Requested Pickup from <span th:text="${region}"></span> on date <span th:text="${time}"> </span>. Contact him on <span th:text="${mob}"> </span> 
+      <!-- <b>	<select 	 th:field="*{Amount}">
+      	<option th:value="'S'" th:text="Student"></option>
+		<option th:value="'F'" th:text="Family"></option>
+		<option th:value="'G'" th:text="General"></option></select></b> -->
+      
+     
+    </p>
+    <p>
+     Requested PickUp Date: <b><span th:text="${msg}"> </span></b>.
+    </p>
+  
+    <p>
+      Keep your EasyWash ID <b><span th:text="${id}"> </span></b> for future references.
+    </p>
+   
+    <p>
+      Regards, <br />
+      <em>EasyWash Team</em>
+       <!--   <em> <a href="http://easywashdoon.com">
+        <img src="https://qualdata.co.in/forms/logo.png" alt="http://easywashdoon.com" height="100" width="100"/>
+      </a></em> -->
+    </p>
+  </body>
+</html>
