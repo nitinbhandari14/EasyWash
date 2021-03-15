@@ -19,7 +19,7 @@ import org.springframework.jms.support.converter.MessageType;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.util.ErrorHandler;
 @EnableJms
-
+//testCommit
 //@EnableAutoConfiguration(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
 //@SpringBootApplication(scanBasePackages = { "com.easywash"},exclude = { SecurityAutoConfiguration.class })
 @SpringBootApplication(scanBasePackages = { "com.easywash"})
